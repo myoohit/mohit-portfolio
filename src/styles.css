@@ -1,0 +1,458 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: Watch Dogs-inspired editorial interface.
+ * Dark = near-black / off-white / cyan accent.
+ * Light = warm light neutral / deep charcoal / cyan accent.
+ *
+ * The main site (About, Skills, Experience, Projects, Contact) uses the
+ * --background/--foreground/--accent family below.
+ *
+ * The boot sequence (SystemLoader) and entry gate (EntryScreen) are
+ * full-bleed, always-on-black states that intentionally ignore the site's
+ * light/dark theme — they use their own --void/--geo/--progress- and
+ * --entry- / --identity-font tokens so the "booting up" moment always reads
+ * the same regardless of which theme the visitor lands in.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-hairline: var(--hairline);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* boot sequence (SystemLoader) */
+  --color-void: var(--void);
+  --color-geo: var(--geo);
+  --color-progress-track: var(--progress-track);
+  --color-progress-fill: var(--progress-fill);
+
+  /* entry gate (EntryScreen) */
+  --color-entry-black: var(--entry-black);
+  --color-entry-white: var(--entry-white);
+  --color-entry-cyan: var(--entry-cyan);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-identity: var(--identity-font);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.965 0.004 106);
+  --foreground: oklch(0.22 0.008 260);
+  --card: oklch(0.985 0.003 106);
+  --card-foreground: oklch(0.22 0.008 260);
+  --popover: oklch(0.985 0.003 106);
+  --popover-foreground: oklch(0.22 0.008 260);
+  --primary: oklch(0.22 0.008 260);
+  --primary-foreground: oklch(0.98 0.003 106);
+  --secondary: oklch(0.93 0.004 106);
+  --secondary-foreground: oklch(0.28 0.008 260);
+  --muted: oklch(0.93 0.004 106);
+  --muted-foreground: oklch(0.53 0.01 260);
+  --accent: oklch(0.62 0.13 210);
+  --accent-foreground: oklch(0.98 0.003 106);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0.003 106);
+  --border: oklch(0.87 0.005 260);
+  --hairline: oklch(0.22 0.008 260 / 12%);
+  --input: oklch(0.87 0.005 260);
+  --ring: oklch(0.62 0.13 210);
+  --glow: oklch(0.62 0.13 210 / 25%);
+
+  /* boot sequence — always near-black, regardless of site theme */
+  --void: oklch(0.06 0 0);
+  --geo: oklch(0.985 0 0);
+  --progress-track: oklch(0.22 0 0);
+  --progress-fill: oklch(0.96 0 0);
+
+  /* entry gate — always near-black with the site's cyan accent */
+  --entry-black: oklch(0.015 0 0);
+  --entry-white: oklch(0.97 0.005 220);
+  --entry-cyan: oklch(0.62 0.13 210);
+  --identity-font: "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
+}
+
+.dark {
+  --background: oklch(0.145 0.005 260);
+  --foreground: oklch(0.955 0.004 106);
+  --card: oklch(0.185 0.006 260);
+  --card-foreground: oklch(0.955 0.004 106);
+  --popover: oklch(0.185 0.006 260);
+  --popover-foreground: oklch(0.955 0.004 106);
+  --primary: oklch(0.955 0.004 106);
+  --primary-foreground: oklch(0.145 0.005 260);
+  --secondary: oklch(0.24 0.006 260);
+  --secondary-foreground: oklch(0.955 0.004 106);
+  --muted: oklch(0.24 0.006 260);
+  --muted-foreground: oklch(0.63 0.012 260);
+  --accent: oklch(0.82 0.13 200);
+  --accent-foreground: oklch(0.145 0.005 260);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.955 0.004 106);
+  --border: oklch(1 0 0 / 12%);
+  --hairline: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.82 0.13 200);
+  --glow: oklch(0.82 0.13 200 / 30%);
+
+  /* boot sequence and entry gate stay identical in dark mode — they are
+     already near-black by design regardless of the site theme */
+  --entry-cyan: oklch(0.82 0.13 200);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    margin: 0;
+    transition:
+      background-color 520ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ============================================================
+   Main site — entrance choreography, hairlines, photo drop
+   ============================================================ */
+
+@keyframes lock-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hairline-draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hairline-draw-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes title-settle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes title-glitch {
+  0%,
+  100% {
+    transform: none;
+    clip-path: none;
+  }
+  20% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  40% {
+    transform: translate3d(2px, 0, 0);
+    clip-path: inset(28% 0 42% 0);
+  }
+  60% {
+    transform: translate3d(-1px, 1px, 0);
+    clip-path: inset(58% 0 12% 0);
+  }
+  80% {
+    transform: translate3d(1px, 0, 0);
+  }
+}
+
+@utility anim-lock {
+  opacity: 0;
+  animation: lock-in 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility anim-line-x {
+  transform-origin: left center;
+  animation: hairline-draw-x 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility anim-line-y {
+  transform-origin: top center;
+  animation: hairline-draw-y 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility anim-title {
+  opacity: 0;
+  animation: title-settle 620ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility glitch-burst {
+  animation: title-glitch 260ms steps(2, end) 1;
+}
+
+@utility hairline {
+  background-color: var(--hairline);
+}
+
+@utility accent-glow {
+  text-shadow: 0 0 14px var(--glow);
+}
+
+/* Main → About recomposition: hero drifts up and out of focus as it leaves. */
+@keyframes hero-recede {
+  to {
+    opacity: 0.12;
+    transform: translate3d(0, -7vh, 0) scale(0.985);
+    filter: blur(2px);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-recompose {
+      will-change: transform, opacity;
+      animation: hero-recede linear both;
+      animation-timeline: view();
+      animation-range: exit-crossing 0% exit-crossing 90%;
+    }
+  }
+}
+
+/* Photograph dropped onto the page — falls, lands, settles. Plays once. */
+@keyframes photo-drop {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) translate3d(0, -110px, 140px) rotate(-9deg) scale(1.06);
+  }
+  55% {
+    opacity: 1;
+    transform: perspective(900px) translate3d(0, 8px, 0) rotate(0.6deg) scale(0.995);
+  }
+  75% {
+    transform: perspective(900px) translate3d(0, -4px, 0) rotate(-1.4deg) scale(1.003);
+  }
+  90% {
+    transform: perspective(900px) translate3d(0, 2px, 0) rotate(-0.2deg) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility photo-drop {
+  transform-origin: 55% 0%;
+  animation: photo-drop 900ms cubic-bezier(0.36, 0.02, 0.24, 1) both;
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   Entry gate — EntryScreen
+   ============================================================ */
+
+@keyframes entry-noise-shift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-1%, 1%, 0); }
+  50% { transform: translate3d(1%, -1%, 0); }
+  75% { transform: translate3d(0.5%, 1%, 0); }
+}
+
+@keyframes identity-fragment {
+  0%, 91%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+  92% { clip-path: inset(18% 0 62% 0); transform: translate(-4px, 0); opacity: 0.75; }
+  93% { clip-path: inset(63% 0 15% 0); transform: translate(5px, 0); opacity: 0.5; }
+  94% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+}
+
+.entry-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  min-height: 100svh;
+  cursor: pointer;
+  touch-action: manipulation;
+  overflow: hidden;
+  background: var(--entry-black);
+  color: var(--entry-white);
+  outline: none;
+  will-change: transform, clip-path;
+}
+
+.entry-screen[data-state="cyan"] {
+  background: var(--entry-cyan);
+  color: var(--entry-black);
+}
+
+.entry-screen__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.5rem;
+  user-select: none;
+}
+
+.entry-screen__identity {
+  position: relative;
+  width: min(92vw, 70rem);
+  text-align: center;
+}
+
+.entry-screen__name,
+.entry-screen__identity::before,
+.entry-screen__identity::after {
+  font-family: var(--identity-font);
+  font-size: clamp(2.45rem, 8.2vw, 7.5rem);
+  font-stretch: condensed;
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: 0;
+  white-space: pre;
+}
+
+.entry-screen__name {
+  margin: 0;
+  filter: contrast(1.18);
+}
+
+.entry-screen__identity::before,
+.entry-screen__identity::after {
+  position: absolute;
+  inset: 0;
+  content: attr(data-text);
+  pointer-events: none;
+  opacity: 0;
+  animation: identity-fragment 6.2s steps(1) infinite;
+}
+
+.entry-screen__identity::before { animation-delay: 1.8s; }
+.entry-screen__identity::after { animation-delay: 4.7s; }
+
+.entry-screen__instruction {
+  margin: 1.65rem 0 0;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(0.54rem, 1.1vw, 0.68rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  opacity: 0;
+}
+
+.entry-screen__noise {
+  position: absolute;
+  inset: -25%;
+  z-index: 1;
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, currentColor 3px 4px);
+  opacity: 0.018;
+  pointer-events: none;
+  animation: entry-noise-shift 0.18s steps(2) infinite;
+}
+
+.entry-screen__tear {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.entry-screen__tear--upper { top: 31%; }
+.entry-screen__tear--lower { top: 69%; }
+
+.entry-screen[data-glitching="true"] .entry-screen__tear {
+  opacity: 0.55;
+  transform: scaleX(0.75) translateX(9%);
+}
+
+.entry-screen[data-glitching="true"] .entry-screen__identity::before,
+.entry-screen[data-glitching="true"] .entry-screen__identity::after {
+  opacity: 0.8;
+  animation: none;
+}
+
+@media (max-width: 520px) {
+  .entry-screen__identity { width: 100%; }
+  .entry-screen__name,
+  .entry-screen__identity::before,
+  .entry-screen__identity::after { font-size: clamp(2.15rem, 12vw, 4.5rem); }
+  .entry-screen__instruction { margin-top: 1.25rem; letter-spacing: 0.13em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-screen__noise,
+  .entry-screen__identity::before,
+  .entry-screen__identity::after { animation: none; }
+}
