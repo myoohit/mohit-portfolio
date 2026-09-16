@@ -58,7 +58,7 @@ export function MainScreen() {
 
         <header className="relative flex items-center justify-between">
           <span
-            className="main-screen__identity-label anim-lock text-[10px] tracking-[0.32em] text-muted-foreground"
+            className="main-screen__identity-label anim-lock text-[14px] font-semibold tracking-[0.32em] text-muted-foreground"
             style={{ animationDelay: "560ms" }}
           >
             MOHIT
