@@ -58,10 +58,10 @@ export function MainScreen() {
 
         <header className="relative flex items-center justify-between">
           <span
-            className="anim-lock font-mono text-[10px] tracking-[0.32em] text-muted-foreground"
+            className="main-screen__identity-label anim-lock text-[10px] tracking-[0.32em] text-muted-foreground"
             style={{ animationDelay: "560ms" }}
           >
-            PORTFOLIO — 2026
+            MOHIT
           </span>
           <div className="anim-lock" style={{ animationDelay: "620ms" }}>
             <ThemeControl />

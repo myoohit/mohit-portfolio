@@ -147,6 +147,10 @@
       color 520ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .main-screen__identity-label {
+    font-family: "Space Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
   :focus-visible {
     outline: 1px solid var(--accent);
     outline-offset: 3px;
